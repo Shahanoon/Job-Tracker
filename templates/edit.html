@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5" style="max-width: 600px;">
+        <h2 class="fw-bold mb-4">✏️ Edit Application</h2>
+
+        <form method="POST" action="/edit/{{ job[0] }}">
+            <div class="mb-3">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-control" value="{{ job[1] }}" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <input type="text" class="form-control" value="{{ job[2] }}" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" value="{{ job[3] }}" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-select">
+                    <option {% if job[5] == 'Applied' %}selected{% endif %}>Applied</option>
+                    <option {% if job[5] == 'Interview Scheduled' %}selected{% endif %}>Interview Scheduled</option>
+                    <option {% if job[5] == 'Offer Received' %}selected{% endif %}>Offer Received</option>
+                    <option {% if job[5] == 'Rejected' %}selected{% endif %}>Rejected</option>
+                    <option {% if job[5] == 'No Response' %}selected{% endif %}>No Response</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Notes</label>
+                <textarea name="notes" class="form-control" rows="3">{{ job[6] }}</textarea>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-warning">Update</button>
+                <a href="/" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
